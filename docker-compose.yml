@@ -1,0 +1,47 @@
+services:
+  flaresolverr:
+    image: flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    restart: unless-stopped
+    environment:
+      - LOG_LEVEL=info
+    ports:
+      - "8191:8191"
+
+  arkia-bot:
+    build: .
+    container_name: arkia-bot
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - flaresolverr
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  arkia-test:
+    build: .
+    container_name: arkia-test
+    env_file:
+      - .env
+    command: ["python", "-u", "arkia_monitor.py", "--test"]
+    profiles:
+      - test
+
+  arkia-debug:
+    build: .
+    container_name: arkia-debug
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    command: ["python", "-u", "arkia_monitor.py", "--debug-api"]
+    depends_on:
+      - flaresolverr
+    profiles:
+      - debug

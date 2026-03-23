@@ -2,8 +2,8 @@
   "_readme": [
     "Edit the 'active' list to control which destinations the bot monitors.",
     "Each entry must exist in the 'candidates' dictionary.",
-    "The bot loads this file on startup, no rebuild needed, just restart.",
-    "city_code is required by Arkia's API (different from the airport IATA code).",
+    "The bot loads this file on startup. No rebuild needed, just restart.",
+    "city_code is the standard IATA metropolitan area code (e.g. PAR for CDG/ORY, LON for LHR/LGW). Single-airport cities use the same code as the airport IATA.",
     "Run: docker compose restart arkia-bot"
   ],
   "active": [

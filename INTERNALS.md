@@ -103,17 +103,17 @@ The response contains a `PRODUCTS` array. Each product represents one flight opt
 
 ## City code mapping
 
-Arkia groups airports by city in their API. Airports sharing a city use the same `OB_ARV_CITY`:
+`OB_ARV_CITY` uses standard IATA metropolitan area codes, the same codes used by GDS systems and booking engines industry-wide. When a city is served by multiple airports, the city code covers all of them:
 
-| City code | Airports |
-|-----------|---------|
+| IATA city code | Airports |
+|----------------|---------|
 | `PAR` | CDG, ORY |
 | `LON` | LHR, LGW |
 | `ROM` | FCO, CIA |
 | `MIL` | MXP, LIN |
 | `STO` | ARN |
 
-All other airports use their own IATA code as the city code.
+Single-airport cities use the same code for both airport and city (e.g. `ATH`, `AMS`, `BCN`).
 
 ---
 

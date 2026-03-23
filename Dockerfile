@@ -10,11 +10,11 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY arkia_monitor.py .
+COPY destinations.json .
 
 ENV NOTIFIED_FILE=/app/data/notified_flights.json
-ENV AVE_CTR_FILE=/app/data/ave_counter.json
-ENV AIRLABS_CTR=/app/data/airlabs_counter.json
 ENV LOG_FILE=/app/data/arkia_monitor.log
+ENV DESTINATIONS_FILE=/app/destinations.json
 
 RUN mkdir -p /app/data
 

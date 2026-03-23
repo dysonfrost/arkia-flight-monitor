@@ -1,0 +1,281 @@
+{
+  "_readme": [
+    "Edit the 'active' list to control which destinations the bot monitors.",
+    "Each entry must exist in the 'candidates' dictionary.",
+    "The bot loads this file on startup, no rebuild needed, just restart.",
+    "city_code is required by Arkia's API (different from the airport IATA code).",
+    "Run: docker compose restart arkia-bot"
+  ],
+  "active": [
+    "CDG",
+    "ORY",
+    "ATH",
+    "FCO",
+    "CIA",
+    "LHR",
+    "LGW",
+    "AMS"
+  ],
+  "candidates": {
+    "CDG": {
+      "city_code": "PAR",
+      "name": "Paris Charles de Gaulle",
+      "flag": "🇫🇷"
+    },
+    "ORY": {
+      "city_code": "PAR",
+      "name": "Paris Orly",
+      "flag": "🇫🇷"
+    },
+    "NCE": {
+      "city_code": "NCE",
+      "name": "Nice",
+      "flag": "🇫🇷"
+    },
+    "MRS": {
+      "city_code": "MRS",
+      "name": "Marseille",
+      "flag": "🇫🇷"
+    },
+    "LYS": {
+      "city_code": "LYS",
+      "name": "Lyon",
+      "flag": "🇫🇷"
+    },
+    "LHR": {
+      "city_code": "LON",
+      "name": "London Heathrow",
+      "flag": "🇬🇧"
+    },
+    "LGW": {
+      "city_code": "LON",
+      "name": "London Gatwick",
+      "flag": "🇬🇧"
+    },
+    "MAN": {
+      "city_code": "MAN",
+      "name": "Manchester",
+      "flag": "🇬🇧"
+    },
+    "EDI": {
+      "city_code": "EDI",
+      "name": "Edinburgh",
+      "flag": "🇬🇧"
+    },
+    "AMS": {
+      "city_code": "AMS",
+      "name": "Amsterdam",
+      "flag": "🇳🇱"
+    },
+    "BRU": {
+      "city_code": "BRU",
+      "name": "Brussels",
+      "flag": "🇧🇪"
+    },
+    "ATH": {
+      "city_code": "ATH",
+      "name": "Athens",
+      "flag": "🇬🇷"
+    },
+    "SKG": {
+      "city_code": "SKG",
+      "name": "Thessaloniki",
+      "flag": "🇬🇷"
+    },
+    "HER": {
+      "city_code": "HER",
+      "name": "Heraklion Crete",
+      "flag": "🇬🇷"
+    },
+    "RHO": {
+      "city_code": "RHO",
+      "name": "Rhodes",
+      "flag": "🇬🇷"
+    },
+    "CFU": {
+      "city_code": "CFU",
+      "name": "Corfu",
+      "flag": "🇬🇷"
+    },
+    "JMK": {
+      "city_code": "JMK",
+      "name": "Mykonos",
+      "flag": "🇬🇷"
+    },
+    "KGS": {
+      "city_code": "KGS",
+      "name": "Kos",
+      "flag": "🇬🇷"
+    },
+    "ZTH": {
+      "city_code": "ZTH",
+      "name": "Zakynthos",
+      "flag": "🇬🇷"
+    },
+    "JSI": {
+      "city_code": "JSI",
+      "name": "Skiathos",
+      "flag": "🇬🇷"
+    },
+    "FCO": {
+      "city_code": "ROM",
+      "name": "Rome Fiumicino",
+      "flag": "🇮🇹"
+    },
+    "CIA": {
+      "city_code": "ROM",
+      "name": "Rome Ciampino",
+      "flag": "🇮🇹"
+    },
+    "MXP": {
+      "city_code": "MIL",
+      "name": "Milan Malpensa",
+      "flag": "🇮🇹"
+    },
+    "LIN": {
+      "city_code": "MIL",
+      "name": "Milan Linate",
+      "flag": "🇮🇹"
+    },
+    "BCN": {
+      "city_code": "BCN",
+      "name": "Barcelona",
+      "flag": "🇪🇸"
+    },
+    "MAD": {
+      "city_code": "MAD",
+      "name": "Madrid",
+      "flag": "🇪🇸"
+    },
+    "VLC": {
+      "city_code": "VLC",
+      "name": "Valencia",
+      "flag": "🇪🇸"
+    },
+    "AGP": {
+      "city_code": "AGP",
+      "name": "Malaga",
+      "flag": "🇪🇸"
+    },
+    "PMI": {
+      "city_code": "PMI",
+      "name": "Palma Mallorca",
+      "flag": "🇪🇸"
+    },
+    "LIS": {
+      "city_code": "LIS",
+      "name": "Lisbon",
+      "flag": "🇵🇹"
+    },
+    "OPO": {
+      "city_code": "OPO",
+      "name": "Porto",
+      "flag": "🇵🇹"
+    },
+    "FRA": {
+      "city_code": "FRA",
+      "name": "Frankfurt",
+      "flag": "🇩🇪"
+    },
+    "MUC": {
+      "city_code": "MUC",
+      "name": "Munich",
+      "flag": "🇩🇪"
+    },
+    "BER": {
+      "city_code": "BER",
+      "name": "Berlin",
+      "flag": "🇩🇪"
+    },
+    "HAM": {
+      "city_code": "HAM",
+      "name": "Hamburg",
+      "flag": "🇩🇪"
+    },
+    "VIE": {
+      "city_code": "VIE",
+      "name": "Vienna",
+      "flag": "🇦🇹"
+    },
+    "ZRH": {
+      "city_code": "ZRH",
+      "name": "Zurich",
+      "flag": "🇨🇭"
+    },
+    "GVA": {
+      "city_code": "GVA",
+      "name": "Geneva",
+      "flag": "🇨🇭"
+    },
+    "PRG": {
+      "city_code": "PRG",
+      "name": "Prague",
+      "flag": "🇨🇿"
+    },
+    "BUD": {
+      "city_code": "BUD",
+      "name": "Budapest",
+      "flag": "🇭🇺"
+    },
+    "WAW": {
+      "city_code": "WAW",
+      "name": "Warsaw",
+      "flag": "🇵🇱"
+    },
+    "CPH": {
+      "city_code": "CPH",
+      "name": "Copenhagen",
+      "flag": "🇩🇰"
+    },
+    "ARN": {
+      "city_code": "STO",
+      "name": "Stockholm Arlanda",
+      "flag": "🇸🇪"
+    },
+    "HEL": {
+      "city_code": "HEL",
+      "name": "Helsinki",
+      "flag": "🇫🇮"
+    },
+    "DUB": {
+      "city_code": "DUB",
+      "name": "Dublin",
+      "flag": "🇮🇪"
+    },
+    "LCA": {
+      "city_code": "LCA",
+      "name": "Larnaca Cyprus",
+      "flag": "🇨🇾"
+    },
+    "PFO": {
+      "city_code": "PFO",
+      "name": "Paphos Cyprus",
+      "flag": "🇨🇾"
+    },
+    "TBS": {
+      "city_code": "TBS",
+      "name": "Tbilisi",
+      "flag": "🇬🇪"
+    },
+    "AMM": {
+      "city_code": "AMM",
+      "name": "Amman Jordan",
+      "flag": "🇯🇴"
+    },
+    "HRG": {
+      "city_code": "HRG",
+      "name": "Hurghada Egypt",
+      "flag": "🇪🇬"
+    },
+    "SSH": {
+      "city_code": "SSH",
+      "name": "Sharm el-Sheikh",
+      "flag": "🇪🇬"
+    },
+    "CAI": {
+      "city_code": "CAI",
+      "name": "Cairo",
+      "flag": "🇪🇬"
+    }
+  }
+}

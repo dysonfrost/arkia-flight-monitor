@@ -6,7 +6,7 @@ Monitors Arkia (IZ) flights from TLV to target European destinations.
 Calls Arkia's internal REST API directly, using FlareSolverr to solve
 the Cloudflare challenge once and cache the session cookie for 1 hour.
 
-Runs every SCRAPE_INTERVAL_MIN minutes (default: 5).
+Runs every SCRAPE_INTERVAL_MIN minutes (default: 10).
 """
 
 import os
@@ -34,28 +34,61 @@ DEP_IATA = "TLV"
 AIRLINE_IATA = "IZ"
 IL_TZ = ZoneInfo("Asia/Jerusalem")
 
-DESTINATIONS = {
-    "CDG": "Paris CDG 🇫🇷",
-    "ORY": "Paris Orly 🇫🇷",
-    "ATH": "Athens 🇬🇷",
-    "FCO": "Rome FCO 🇮🇹",
-    "CIA": "Rome Ciampino 🇮🇹",
-    "LHR": "London Heathrow 🇬🇧",
-    "LGW": "London Gatwick 🇬🇧",
-    "AMS": "Amsterdam 🇳🇱",
-}
+# Destinations are loaded from destinations.json at startup.
+# Edit that file to add/remove destinations — no rebuild needed.
+DESTINATIONS_FILE = os.environ.get("DESTINATIONS_FILE", "destinations.json")
 
-# Airport IATA → Arkia city code (used in OB_ARV_CITY field)
-CITY_CODES = {
-    "CDG": "PAR",
-    "ORY": "PAR",
-    "ATH": "ATH",
-    "FCO": "ROM",
-    "CIA": "ROM",
-    "LHR": "LON",
-    "LGW": "LON",
-    "AMS": "AMS",
-}
+
+def _load_destinations() -> tuple[dict, dict]:
+    """Load active destinations and city codes from destinations.json."""
+    paths_to_try = [
+        DESTINATIONS_FILE,
+        os.path.join(os.path.dirname(__file__), DESTINATIONS_FILE),
+        "/app/destinations.json",
+    ]
+    for path in paths_to_try:
+        if os.path.exists(path):
+            with open(path) as f:
+                data = json.load(f)
+            candidates = data.get("candidates", {})
+            active = data.get("active", [])
+            dests, cities = {}, {}
+            for iata in active:
+                if iata not in candidates:
+                    print(
+                        f"WARNING: {iata} in active list but not in candidates — skipping"
+                    )
+                    continue
+                c = candidates[iata]
+                dests[iata] = f"{c['name']} {c['flag']}"
+                cities[iata] = c["city_code"]
+            print(f"Loaded {len(dests)} destination(s) from {path}")
+            return dests, cities
+    print(f"WARNING: {DESTINATIONS_FILE} not found — using built-in defaults")
+    dests = {
+        "CDG": "Paris CDG 🇫🇷",
+        "ORY": "Paris Orly 🇫🇷",
+        "ATH": "Athens 🇬🇷",
+        "FCO": "Rome FCO 🇮🇹",
+        "CIA": "Rome Ciampino 🇮🇹",
+        "LHR": "London Heathrow 🇬🇧",
+        "LGW": "London Gatwick 🇬🇧",
+        "AMS": "Amsterdam 🇳🇱",
+    }
+    cities = {
+        "CDG": "PAR",
+        "ORY": "PAR",
+        "ATH": "ATH",
+        "FCO": "ROM",
+        "CIA": "ROM",
+        "LHR": "LON",
+        "LGW": "LON",
+        "AMS": "AMS",
+    }
+    return dests, cities
+
+
+DESTINATIONS, CITY_CODES = _load_destinations()
 
 ARKIA_API_URL = "https://www.arkia.co.il/api/forward/Search/GetSearchResults"
 ARKIA_HOME_URL = "https://www.arkia.co.il/en/"

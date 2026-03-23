@@ -16,6 +16,7 @@ services:
       - .env
     volumes:
       - ./data:/app/data
+      - ./destinations.json:/app/destinations.json # edit & restart to apply
     depends_on:
       - flaresolverr
     logging:
@@ -29,6 +30,8 @@ services:
     container_name: arkia-test
     env_file:
       - .env
+    volumes:
+      - ./destinations.json:/app/destinations.json
     command: ["python", "-u", "arkia_monitor.py", "--test"]
     profiles:
       - test
@@ -40,6 +43,7 @@ services:
       - .env
     volumes:
       - ./data:/app/data
+      - ./destinations.json:/app/destinations.json
     command: ["python", "-u", "arkia_monitor.py", "--debug-api"]
     depends_on:
       - flaresolverr
